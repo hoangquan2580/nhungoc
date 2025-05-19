@@ -13,15 +13,22 @@
     }
     .text-overlay {
       position: absolute;
-      bottom: 25%;
+      bottom: 80%;
       left: 50%;
       transform: translateX(-50%);
-      background-color: rgba(249, 246, 243, 0.8);
+      background-color: rgba(249, 246, 243, 0);
       padding: 10px 20px;
       border-radius: 5px;
       text-align: center;
       width: 80%;
       font-size: 3rem;
+      
+    }
+    #name-input{
+      background-color: #14020200;
+      text-align: center;
+      color: #fff;
+      border-color: #ffffff00;
     }
     .save-button {
        margin: 55px 55px;
@@ -39,7 +46,7 @@
 
     @media (max-width: 767px) {
       .text-overlay {
-        bottom: 25%;
+        bottom: 79%;
         font-size: 2rem;
       }
       .save-button {
@@ -56,9 +63,9 @@
       <div class="col-12 col-md-8 offset-md-2">
        
         <div class="image-container">
-          <img src="./image.png" class="img-fluid rounded" alt="Graduation Party" id="image">
+          <img src="./image1.png" class="img-fluid rounded" alt="Graduation Party" id="image">
           <div class="text-overlay" id="text-overlay">
-            <input type="text" id="name-input" placeholder="Nhập của bạn" class="form-control">
+            <input type="text" id="name-input" placeholder="Nhập tên của bạn" class="form-control">
           </div>
         </div>
       <button class="save-button " onclick="saveImage()">Lưu</button>
@@ -84,10 +91,10 @@
       ctx.drawImage(image, 0, 0);
 
       // Vẽ tên khách hàng lên ảnh
-      ctx.font = '3rem Arial';
-      ctx.fillStyle = 'rgba(#000000)';
+      ctx.font = '4rem Arial';
+      ctx.fillStyle = 'rgba(249, 246, 243, 0.8)';
       ctx.textAlign = 'center';
-      ctx.fillText(nameInput.value, canvas.width / 2, canvas.height * 0.75);
+      ctx.fillText(nameInput.value, canvas.width / 2, canvas.height * 0.18);
 
       var link = document.createElement('a');
       link.download = `graduation-party-${nameInput.value}.png`;
