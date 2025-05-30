@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,44 +12,110 @@
       display: inline-block;
       width: 100%;
     }
+
     .text-overlay {
       position: absolute;
-      bottom: 80%;
+      bottom: 82%;
       left: 50%;
       transform: translateX(-50%);
-      background-color: rgba(249, 246, 243, 0);
-      padding: 10px 20px;
+      background-color: rgba(255, 255, 255, 0);
+      padding: 15px 20px;
       border-radius: 5px;
       text-align: center;
       width: 80%;
       font-size: 3rem;
-      
-    }
-    #name-input{
-      background-color: #14020200;
-      text-align: center;
-      color: #fff;
-      border-color: #ffffff00;
-    }
-    .save-button {
-       margin: 55px 55px;
-      /* bottom: 10%; */
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: #007bff;
-      color: #fff;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 1.2rem;
+
     }
 
+    #name-input {
+      background-color: #14020200;
+      text-align: center;
+      color: #ffffff;
+      font-family: 'GFS Artemisia';
+      border-color: #ffffff00;
+      font-style: italic;
+      font-size: 28px;
+      font-weight: bold;
+
+    }
+
+    #name-input::placeholder {
+      color: rgba(255, 255, 255, 0.667);
+    }
+
+    /* button */
+    /*  */
+
+    .btn-hover {
+
+      width: 200px;
+      font-size: 16px;
+      font-weight: 600;
+      color: #fff;
+      cursor: pointer;
+
+     
+      /* Căn giữa theo chiều ngang */
+      align-items: center;
+      height: 55px;
+      margin: 10px auto;
+      text-align: center;
+      border: none;
+      background-size: 300% 100%;
+
+      border-radius: 50px;
+      moz-transition: all .4s ease-in-out;
+      -o-transition: all .4s ease-in-out;
+      -webkit-transition: all .4s ease-in-out;
+      transition: all .4s ease-in-out;
+    }
+
+    .btn-hover:hover {
+      background-position: 100% 0;
+      moz-transition: all .4s ease-in-out;
+      -o-transition: all .4s ease-in-out;
+      -webkit-transition: all .4s ease-in-out;
+      transition: all .4s ease-in-out;
+    }
+
+    .btn-hover:focus {
+      outline: none;
+    }
+
+    .btn-hover.color-1 {
+      background-image: linear-gradient(to right, #25aae1, #40e495, #30dd8a, #2bb673);
+      box-shadow: 0 4px 15px 0 rgba(49, 196, 190, 0.75);
+    }
+
+    /*  */
+    body {
+      background: linear-gradient(-45deg, #ffece6, #a6a5a5, #4e4f4f, #232424);
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
+      height: 100vh;
+    }
+
+    @keyframes gradient {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    /* button */
     @media (max-width: 767px) {
       .text-overlay {
-        bottom: 79%;
+        bottom: 80%;
         font-size: 2rem;
       }
+
       .save-button {
         bottom: 5%;
         font-size: 1rem;
@@ -56,24 +123,30 @@
     }
   </style>
 </head>
+
 <body>
-  
+
+
+
+
+
   <div class="container my-5 d-flex align-items-center">
-    <div class="row w-100">
+    <div class="row ">
       <div class="col-12 col-md-8 offset-md-2">
-       
+
         <div class="image-container">
-          <img src="./image1.png" class="img-fluid rounded" alt="Graduation Party" id="image">
+          <img src="./image.png" class="img-fluid rounded" alt="Graduation Party" id="image">
           <div class="text-overlay" id="text-overlay">
-            <input type="text" id="name-input" placeholder="Nhập tên của bạn" class="form-control">
+            <input type="text" id="name-input" placeholder="Nhập tên của bạn" class="form-control inputt">
           </div>
         </div>
-      <button class="save-button " onclick="saveImage()">Lưu</button>
+        <button class="save-button btn-hover color-1" onclick="saveImage()">Lưu</button>
+
+      </div>
     </div>
-    </div>
-   
+
   </div>
- 
+
 
   <script>
     function saveImage() {
@@ -91,10 +164,10 @@
       ctx.drawImage(image, 0, 0);
 
       // Vẽ tên khách hàng lên ảnh
-      ctx.font = '4rem Arial';
-      ctx.fillStyle = 'rgba(249, 246, 243, 0.8)';
+      ctx.font = 'bold italic 100px GFS Artemisia ';
+      ctx.fillStyle = 'rgba( 255, 255, 255)';
       ctx.textAlign = 'center';
-      ctx.fillText(nameInput.value, canvas.width / 2, canvas.height * 0.18);
+      ctx.fillText(nameInput.value, canvas.width / 2, canvas.height * 0.18 - 55);
 
       var link = document.createElement('a');
       link.download = `graduation-party-${nameInput.value}.png`;
@@ -103,4 +176,5 @@
     }
   </script>
 </body>
+
 </html>
