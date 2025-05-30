@@ -10,9 +10,14 @@
     .image-container {
       position: relative;
       display: inline-block;
-      width: 100%;
+      /* width: 100%; */
+      
+     
     }
-
+.khacviet{
+  width: 100%;
+  height: 100%;
+}
     .text-overlay {
       position: absolute;
       bottom: 82%;
@@ -58,7 +63,7 @@
       /* Căn giữa theo chiều ngang */
       align-items: center;
       height: 55px;
-      margin: 10px auto;
+      margin: 10px;
       text-align: center;
       border: none;
       background-size: 300% 100%;
@@ -135,7 +140,7 @@
       <div class="col-12 col-md-8 offset-md-2">
 
         <div class="image-container">
-          <img src="./image.png" class="img-fluid rounded" alt="Graduation Party" id="image">
+          <img src="./image.png" class="img-fluid rounded khacviet" alt="Graduation Party" id="image">
           <div class="text-overlay" id="text-overlay">
             <input type="text" id="name-input" placeholder="Nhập tên của bạn" class="form-control inputt">
           </div>
@@ -147,8 +152,39 @@
 
   </div>
 
+<script>
+  function saveImage() {
+    var image = document.getElementById('image');
+    var nameInput = document.getElementById('name-input');
+    var textOverlay = document.getElementById('text-overlay');
 
-  <script>
+    // Tạo một canvas mới
+    var canvas = document.createElement('canvas');
+    canvas.width = image.naturalWidth; // Sử dụng naturalWidth
+    canvas.height = image.naturalHeight; // Sử dụng naturalHeight
+    var ctx = canvas.getContext('2d');
+
+    // Vẽ hình ảnh gốc lên canvas
+    ctx.drawImage(image, 0, 0);
+
+    // Cập nhật tên khách hàng hiển thị trên ảnh
+    ctx.font = 'bold italic 100px GFS Artemisia ';
+    ctx.fillStyle = 'rgba(255, 255, 255)';
+    ctx.textAlign = 'center';
+    ctx.fillText(nameInput.value, canvas.width / 2, canvas.height * 0.18 - 55);
+
+    // Tạo liên kết tải xuống
+    var link = document.createElement('a');
+    link.download = `graduation-party-${nameInput.value}.png`;
+    link.href = canvas.toDataURL();
+    link.click();
+
+    // Làm trống ô nhập liệu
+    nameInput.value = '';
+  }
+</script>
+
+  <!-- <script>
     function saveImage() {
       var image = document.getElementById('image');
       var nameInput = document.getElementById('name-input');
@@ -174,7 +210,7 @@
       link.href = canvas.toDataURL();
       link.click();
     }
-  </script>
+  </script> -->
 </body>
 
 </html>
