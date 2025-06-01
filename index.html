@@ -117,27 +117,27 @@
   function saveImage() {
     var image = document.getElementById('image');
     var nameInput = document.getElementById('name-input');
-    var textOverlay = document.getElementById('text-overlay');
-
     var canvas = document.createElement('canvas');
     canvas.width = image.naturalWidth;
     canvas.height = image.naturalHeight;
     var ctx = canvas.getContext('2d');
 
     ctx.drawImage(image, 0, 0);
-
-    ctx.font = 'bold italic 100px "GFS Artemisia", serif'; // Adjusted font size and added fallback
+    ctx.font = 'bold italic 100px "GFS Artemisia", serif';
     ctx.fillStyle = 'rgba(255, 255, 255)';
     ctx.textAlign = 'center';
     ctx.fillText(nameInput.value, canvas.width / 2, canvas.height * 0.18 - 55);
 
-    var link = document.createElement('a');
-    link.download = `graduation-party-${nameInput.value}.png`;
-    link.href = canvas.toDataURL();
-    link.click();
-
+    canvas.toBlob(function(blob) {
+        var link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = `graduation-party-${nameInput.value}.png`;
+        link.click();
+    });
+    
     nameInput.value = '';
-  }
+}
+
 </script>
 </body>
 
