@@ -13,12 +13,10 @@
       position: relative;
       display: inline-block;
     }
-
     .khacviet {
       width: 100%;
       height: 100%;
     }
-
     .text-overlay {
       position: absolute;
       bottom: 82%;
@@ -31,22 +29,19 @@
       width: 80%;
       font-size: 3rem;
     }
-
     #name-input {
       background-color: #14020200;
       text-align: center;
       color: #ffffff;
-      font-family: 'GFS Artemisia'; /* Đảm bảo chỉ sử dụng font GFS Artemisia */
+      font-family: 'GFS Artemisia', serif; /* Added fallback */
       border-color: #ffffff00;
       font-style: italic;
       font-size: 28px;
       font-weight: bold;
     }
-
     #name-input::placeholder {
       color: rgba(255, 255, 255, 0.667);
     }
-
     .btn-hover {
       width: 200px;
       font-size: 16px;
@@ -62,47 +57,38 @@
       border-radius: 50px;
       transition: all .4s ease-in-out;
     }
-
     .btn-hover:hover {
       background-position: 100% 0;
     }
-
     .btn-hover:focus {
       outline: none;
     }
-
     .btn-hover.color-1 {
       background-image: linear-gradient(to right, #25aae1, #40e495, #30dd8a, #2bb673);
       box-shadow: 0 4px 15px 0 rgba(49, 196, 190, 0.75);
     }
-
     body {
       background: linear-gradient(-45deg, #ffece6, #a6a5a5, #4e4f4f, #232424);
       background-size: 400% 400%;
       animation: gradient 15s ease infinite;
       height: 100vh;
     }
-
     @keyframes gradient {
       0% {
         background-position: 0% 50%;
       }
-
       50% {
         background-position: 100% 50%;
       }
-
       100% {
         background-position: 0% 50%;
       }
     }
-
     @media (max-width: 767px) {
       .text-overlay {
         bottom: 80%;
         font-size: 2rem;
       }
-
       .save-button {
         bottom: 5%;
         font-size: 1rem;
@@ -126,36 +112,32 @@
     </div>
   </div>
 
-  <script>
-    function saveImage() {
-      var image = document.getElementById('image');
-      var nameInput = document.getElementById('name-input');
+<script>
+  function saveImage() {
+    var image = document.getElementById('image');
+    var nameInput = document.getElementById('name-input');
+    var textOverlay = document.getElementById('text-overlay');
 
-      // Tạo một canvas mới
-      var canvas = document.createElement('canvas');
-      canvas.width = image.naturalWidth; // Sử dụng naturalWidth
-      canvas.height = image.naturalHeight; // Sử dụng naturalHeight
-      var ctx = canvas.getContext('2d');
+    var canvas = document.createElement('canvas');
+    canvas.width = image.naturalWidth;
+    canvas.height = image.naturalHeight;
+    var ctx = canvas.getContext('2d');
 
-      // Vẽ hình ảnh gốc lên canvas
-      ctx.drawImage(image, 0, 0);
+    ctx.drawImage(image, 0, 0);
 
-      // Cập nhật tên khách hàng hiển thị trên ảnh
-      ctx.font = 'bold italic 100px "GFS Artemisia"'; // Sử dụng font GFS Artemisia
-      ctx.fillStyle = 'rgba(255, 255, 255)';
-      ctx.textAlign = 'center';
-      ctx.fillText(nameInput.value, canvas.width / 2, canvas.height * 0.18 - 55);
+    ctx.font = 'bold italic 28px "GFS Artemisia", serif'; // Adjusted font size and added fallback
+    ctx.fillStyle = 'rgba(255, 255, 255)';
+    ctx.textAlign = 'center';
+    ctx.fillText(nameInput.value, canvas.width / 2, canvas.height * 0.18 - 55);
 
-      // Tạo liên kết tải xuống
-      var link = document.createElement('a');
-      link.download = `graduation-party-${nameInput.value}.png`;
-      link.href = canvas.toDataURL();
-      link.click();
+    var link = document.createElement('a');
+    link.download = `graduation-party-${nameInput.value}.png`;
+    link.href = canvas.toDataURL();
+    link.click();
 
-      // Làm trống ô nhập liệu
-      nameInput.value = '';
-    }
-  </script>
+    nameInput.value = '';
+  }
+</script>
 </body>
 
 </html>
