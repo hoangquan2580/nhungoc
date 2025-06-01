@@ -36,7 +36,7 @@
       background-color: #14020200;
       text-align: center;
       color: #ffffff;
-      font-family: 'GFS Artemisia', GFS Artemisiaserif; /* Thêm sans-serif làm font dự phòng */
+      font-family: 'GFS Artemisia'; /* Đảm bảo chỉ sử dụng font GFS Artemisia */
       border-color: #ffffff00;
       font-style: italic;
       font-size: 28px;
@@ -130,7 +130,6 @@
     function saveImage() {
       var image = document.getElementById('image');
       var nameInput = document.getElementById('name-input');
-      var textOverlay = document.getElementById('text-overlay');
 
       // Tạo một canvas mới
       var canvas = document.createElement('canvas');
@@ -142,7 +141,7 @@
       ctx.drawImage(image, 0, 0);
 
       // Cập nhật tên khách hàng hiển thị trên ảnh
-      ctx.font = 'bold italic 100px GFS Artemisia, sans-serif'; // Thêm sans-serif
+      ctx.font = 'bold italic 100px "GFS Artemisia"'; // Sử dụng font GFS Artemisia
       ctx.fillStyle = 'rgba(255, 255, 255)';
       ctx.textAlign = 'center';
       ctx.fillText(nameInput.value, canvas.width / 2, canvas.height * 0.18 - 55);
